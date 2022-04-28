@@ -1,9 +1,7 @@
 import React from "react";
-import $ from 'jquery'
 import AddProduct from './/AddProduct';
 import {useState} from 'react';
 import {ListGroup, Container, ListGroupItem, Card, Button} from 'react-bootstrap';
-
 
 function Checkout(props) {
   const orderItems = props.orderData.items

@@ -1,51 +1,105 @@
-import React from "react";
-import alertMessage from '../utils/helpers';
-import $ from 'jquery'
+import React, { useState, useEffect } from "react";
 import {Container, Form, Button} from 'react-bootstrap';
 
 function AddProduct(props) {
-  function addNewProduct() {
-    const name = document.getElementById("nameForm").value
-    const sku = document.getElementById("skuForm").value
-    const quantity = document.getElementById("qtyForm").value
-    const price = document.getElementById("priceForm").value
-    const product = {name, sku, quantity, price}
-    if (name && sku && quantity && price) {
-      props.setNewProduct(product)
-      props.orderItems.push(product)
-    } 
-    if (!name) document.getElementById("nameAlert").value = "Tienes que agregar un nombre!"
-
+  const initialValues = {name: "", sku: "", quantity: "", price: ""}
+  const handleChange = (e) => {
+    const {id, value} = e.target
+    setFormValues({...formValues, [id]: value } )
   }
+  const [formValues, setFormValues] = useState(initialValues)
+  const [formErrors, setFormErrors] = useState({})
+  const [isSubmit, setIsSubmit] = useState(false)
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(formValues))
+    setIsSubmit(true);
+  }
+
+  useEffect(() => {
+    if(Object.keys(formErrors).length === 0 && isSubmit) {
+      props.setNewProduct(formValues)
+      props.orderItems.push(formValues)
+      setIsSubmit(false);
+    }
+  })
+  const validate = (values) => {
+    const errors = {}
+    const numberRegex = /[0-9]/
+    const priceRegex = /[0-9].?[0-9]*/
+    if (!values.name) errors.name = "Please enter a name for the product!"
+    if (!values.sku) errors.sku = "Please enter a SKU for the product!"
+    if (!values.quantity) {
+      errors.quantity = "Please enter a number of products to add to the order!"
+    } else if (!numberRegex.test(values.quantity)) {
+      errors.quantity = "Quantity must be an integer!"
+    }
+    if (!values.price) {
+      errors.price = "Please enter a price for the product!"
+    } else if (!priceRegex.test(values.price)) {
+      errors.price = "Must be a valid price!"
+    }
+    return errors;
+  }
+  // function addNewProduct() {
+  //   if (Object.keys(formErrors).length === 0 && isSubmit) {
+  //     props.setNewProduct(formValues)
+  //     props.orderItems.push(formValues)
+  //     console.log(formValues)
+  //   }
+    // const name = document.getElementById("nameForm").value
+    // const sku = document.getElementById("skuForm").value
+    // const quantity = document.getElementById("qtyForm").value
+    // const price = document.getElementById("priceForm").value
+    // const product = {name, sku, quantity, price}
+    // if (name && sku && quantity && price) {
+    //   props.setNewProduct(product)
+    //   props.orderItems.push(product)
+    // } 
+    // if (!name) document.getElementById("nameAlert").value = "Tienes que agregar un nombre!"
+
+  // }
   return(
     <div className="App">
       <Container className="form-container">
         <h2>Something else? Add it to your order!</h2>
-        <Form>
-          <Form.Group className="mb-3" controlId="nameForm">
+        {/* {Object.keys(formErrors).length === 0 && isSubmit ? (<div>Product added succesfully!</div>) : (<div>Can't add product if some information is missing</div>)}
+        <pre> {JSON.stringify(formValues, undefined, 2)} </pre> */}
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="name" name="name" value={formValues.name} onChange={handleChange} >
             <Form.Label>Name</Form.Label>
             <Form.Control type="" placeholder="Camisa manga larga - M" />
-            <Form.Text id="nameAlert" className="text-muted">
-              Agrega nombre!
+            <Form.Text id="nameAlert" className="text-danger fs-6">
+              {formErrors.name}
             </Form.Text>
           </Form.Group>
 
-          <Form.Group id="SKUForm" className="mb-3" controlId="skuForm">
+          <Form.Group id="SKUForm" className="mb-3" controlId="sku" name="sku" value={formValues.sku} onChange={handleChange} >
             <Form.Label>SKU</Form.Label>
             <Form.Control type="" placeholder="123456789" />
+            <Form.Text id="nameAlert" className="text-danger fs-6">
+              {formErrors.sku}
+            </Form.Text>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="qtyForm">
+          <Form.Group className="mb-3" controlId="quantity" name="quantity" value={formValues.quantity} onChange={handleChange} >
             <Form.Label>Quantity</Form.Label>
-            <Form.Control type="" placeholder="0" />
+            <Form.Control type="" placeholder="1" />
+            <Form.Text id="nameAlert" className="text-danger fs-6">
+              {formErrors.quantity}
+            </Form.Text>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="priceForm">
+          <Form.Group className="mb-3" controlId="price" name="price" value={formValues.price} onChange={handleChange} >
             <Form.Label>Price</Form.Label>
-            <Form.Control type="" placeholder="100" />
+            <Form.Control type="" placeholder="100.00" />
+            <Form.Text id="nameAlert" className="text-danger fs-6">
+              {formErrors.price}
+            </Form.Text>
           </Form.Group>
 
-          <Button onClick={addNewProduct} id="addBtn" variant="primary">
+          <Button type="submit" id="addBtn" variant="primary">
             Add
           </Button>
         </Form>
