@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import {Container, Form, Button} from 'react-bootstrap';
 
 function AddProduct(props) {
+  const totals = props.orderData.totals
   const initialValues = {name: "", sku: "", quantity: "", price: ""}
+
   const handleChange = (e) => {
     const {id, value} = e.target
     setFormValues({...formValues, [id]: value } )
   }
+
   const [formValues, setFormValues] = useState(initialValues)
   const [formErrors, setFormErrors] = useState({})
   const [isSubmit, setIsSubmit] = useState(false)
@@ -15,19 +18,23 @@ function AddProduct(props) {
     e.preventDefault();
     setFormErrors(validate(formValues))
     setIsSubmit(true);
+    props.setSubTotal(props.subTotal + formValues.quantity * formValues.price)
   }
 
   useEffect(() => {
     if(Object.keys(formErrors).length === 0 && isSubmit) {
       props.setNewProduct(formValues)
-      props.orderItems.push(formValues)
+      props.orderData.items.push(formValues)
       setIsSubmit(false);
+      props.setTotal(props.subTotal + parseInt(totals.tax) + parseInt(totals.shipping))
     }
   })
+
   const validate = (values) => {
     const errors = {}
     const numberRegex = /[0-9]/
     const priceRegex = /[0-9].?[0-9]*/
+    
     if (!values.name) errors.name = "Please enter a name for the product!"
     if (!values.sku) errors.sku = "Please enter a SKU for the product!"
     if (!values.quantity) {
@@ -42,31 +49,13 @@ function AddProduct(props) {
     }
     return errors;
   }
-  // function addNewProduct() {
-  //   if (Object.keys(formErrors).length === 0 && isSubmit) {
-  //     props.setNewProduct(formValues)
-  //     props.orderItems.push(formValues)
-  //     console.log(formValues)
-  //   }
-    // const name = document.getElementById("nameForm").value
-    // const sku = document.getElementById("skuForm").value
-    // const quantity = document.getElementById("qtyForm").value
-    // const price = document.getElementById("priceForm").value
-    // const product = {name, sku, quantity, price}
-    // if (name && sku && quantity && price) {
-    //   props.setNewProduct(product)
-    //   props.orderItems.push(product)
-    // } 
-    // if (!name) document.getElementById("nameAlert").value = "Tienes que agregar un nombre!"
 
-  // }
   return(
     <div className="App">
       <Container className="form-container">
         <h2>Something else? Add it to your order!</h2>
-        {/* {Object.keys(formErrors).length === 0 && isSubmit ? (<div>Product added succesfully!</div>) : (<div>Can't add product if some information is missing</div>)}
-        <pre> {JSON.stringify(formValues, undefined, 2)} </pre> */}
         <Form onSubmit={handleSubmit}>
+
           <Form.Group className="mb-3" controlId="name" name="name" value={formValues.name} onChange={handleChange} >
             <Form.Label>Name</Form.Label>
             <Form.Control type="" placeholder="Camisa manga larga - M" />
@@ -102,6 +91,7 @@ function AddProduct(props) {
           <Button type="submit" id="addBtn" variant="primary">
             Add
           </Button>
+
         </Form>
       </Container>
     </div>
