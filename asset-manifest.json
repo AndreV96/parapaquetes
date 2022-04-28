@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Parapaquetes/static/css/main.6f276138.css",
-    "main.js": "/Parapaquetes/static/js/main.722887ed.js",
-    "static/js/787.98f82067.chunk.js": "/Parapaquetes/static/js/787.98f82067.chunk.js",
-    "index.html": "/Parapaquetes/index.html",
-    "main.6f276138.css.map": "/Parapaquetes/static/css/main.6f276138.css.map",
-    "main.722887ed.js.map": "/Parapaquetes/static/js/main.722887ed.js.map",
-    "787.98f82067.chunk.js.map": "/Parapaquetes/static/js/787.98f82067.chunk.js.map"
+    "main.css": "/parapaquetes/static/css/main.e8565b5a.css",
+    "main.js": "/parapaquetes/static/js/main.fbbc6ab9.js",
+    "static/js/787.98f82067.chunk.js": "/parapaquetes/static/js/787.98f82067.chunk.js",
+    "index.html": "/parapaquetes/index.html",
+    "main.e8565b5a.css.map": "/parapaquetes/static/css/main.e8565b5a.css.map",
+    "main.fbbc6ab9.js.map": "/parapaquetes/static/js/main.fbbc6ab9.js.map",
+    "787.98f82067.chunk.js.map": "/parapaquetes/static/js/787.98f82067.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6f276138.css",
-    "static/js/main.722887ed.js"
+    "static/css/main.e8565b5a.css",
+    "static/js/main.fbbc6ab9.js"
   ]
 }
