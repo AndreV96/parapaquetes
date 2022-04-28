@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Container, Form, Button} from 'react-bootstrap';
+import {Container, Card, Form, Button} from 'react-bootstrap';
 
 function AddProduct(props) {
   const totals = props.orderData.totals
@@ -53,46 +53,49 @@ function AddProduct(props) {
   return(
     <div className="App">
       <Container className="form-container">
-        <h2>Something else? Add it to your order!</h2>
-        <Form onSubmit={handleSubmit}>
+        <Card  className="p-2">
+          <p className="m-1 ">Forgot Something?</p> 
+          <p className="m-1 fw-bold text-blue">Add more products to your order!</p>
+          <Form onSubmit={handleSubmit}>
 
-          <Form.Group className="mb-3" controlId="name" name="name" value={formValues.name} onChange={handleChange} >
-            <Form.Label>Name</Form.Label>
-            <Form.Control type="" placeholder="Camisa manga larga - M" />
-            <Form.Text id="nameAlert" className="text-danger fs-6">
-              {formErrors.name}
-            </Form.Text>
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="name" name="name" value={formValues.name} onChange={handleChange} >
+              <Form.Label>Name</Form.Label>
+              <Form.Control type="" placeholder="Camisa manga larga - M" />
+              <Form.Text id="nameAlert" className="text-danger fs-6">
+                {formErrors.name}
+              </Form.Text>
+            </Form.Group>
 
-          <Form.Group id="SKUForm" className="mb-3" controlId="sku" name="sku" value={formValues.sku} onChange={handleChange} >
-            <Form.Label>SKU</Form.Label>
-            <Form.Control type="" placeholder="123456789" />
-            <Form.Text id="nameAlert" className="text-danger fs-6">
-              {formErrors.sku}
-            </Form.Text>
-          </Form.Group>
+            <Form.Group id="SKUForm" className="mb-3" controlId="sku" name="sku" value={formValues.sku} onChange={handleChange} >
+              <Form.Label>SKU</Form.Label>
+              <Form.Control type="" placeholder="123456789" />
+              <Form.Text id="nameAlert" className="text-danger fs-6">
+                {formErrors.sku}
+              </Form.Text>
+            </Form.Group>
 
-          <Form.Group className="mb-3" controlId="quantity" name="quantity" value={formValues.quantity} onChange={handleChange} >
-            <Form.Label>Quantity</Form.Label>
-            <Form.Control type="" placeholder="1" />
-            <Form.Text id="nameAlert" className="text-danger fs-6">
-              {formErrors.quantity}
-            </Form.Text>
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="quantity" name="quantity" value={formValues.quantity} onChange={handleChange} >
+              <Form.Label>Quantity</Form.Label>
+              <Form.Control type="" placeholder="1" />
+              <Form.Text id="nameAlert" className="text-danger fs-6">
+                {formErrors.quantity}
+              </Form.Text>
+            </Form.Group>
 
-          <Form.Group className="mb-3" controlId="price" name="price" value={formValues.price} onChange={handleChange} >
-            <Form.Label>Price</Form.Label>
-            <Form.Control type="" placeholder="100.00" />
-            <Form.Text id="nameAlert" className="text-danger fs-6">
-              {formErrors.price}
-            </Form.Text>
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="price" name="price" value={formValues.price} onChange={handleChange} >
+              <Form.Label>Price</Form.Label>
+              <Form.Control type="" placeholder="100.00" />
+              <Form.Text id="nameAlert" className="text-danger fs-6">
+                {formErrors.price}
+              </Form.Text>
+            </Form.Group>
 
-          <Button type="submit" id="addBtn" variant="primary">
-            Add
-          </Button>
+            <Button type="submit" id="addBtn" variant="primary">
+              Add
+            </Button>
 
-        </Form>
+          </Form>
+        </Card>
       </Container>
     </div>
   )

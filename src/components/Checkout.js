@@ -17,7 +17,6 @@ function Checkout(props) {
       <ShippingInfo orderData = {props.orderData} />
       <Container className="p-3">
         
-        <h2> Order {props.orderData.number} </h2>
         {orderItems ? orderItems.map((item) => (
           <Card key={item.sku}>
 

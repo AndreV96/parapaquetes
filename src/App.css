@@ -13,17 +13,6 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
 }
@@ -38,12 +27,65 @@
 }
 
 /* Custom Classes */
+
 .center-item {
   width: 0 auto;
 }
+
+/* Colors */
+
 .text-red {
   color: #D30000;
 }
 .text-green {
   color: #198754;
 }
+.text-blue {
+  color: #04a0bd !important;
+}
+.border-primary {
+  border-color: #04a0bd !important;
+}
+
+.header {
+  background-color: #04a0bd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+/* Order List */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+
+}
+
+/* Buttons */
+
+.order-button {
+  border-color: #04a0bd !important;
+  color: #04a0bd !important;
+}
+.order-button:hover {
+  background-color: #04a0bd !important;
+  color: white !important;
+}
+.order-selected {
+  background-color: #04a0bd !important;
+  color: white !important;
+}
+
+/* Swal Alert Button */
+/* .swal-button {
+  background-color: red;
+}
+.swal-button:hover {
+  background-color: #198754;
+} */

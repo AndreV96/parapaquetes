@@ -1,15 +1,26 @@
 import React from "react";
+import swal from "sweetalert"
 import {Container, Card, Button} from 'react-bootstrap';
 
 function OrderConfirmation(props) {
   const totalCosts = props.orderData.totals
+
+  const showConfirmationAlert = () => {
+    swal( {
+      title: "Order confirmed and payment done!",
+      text: `Total: ${props.total}`,
+      icon: "success",
+      button: "Ok",
+      timer: "4000"
+    })
+  }
   
   return(
     <Container className="d-flex justify-content-center my-3">
       <Card style={{ width: '18rem' }}>
         <Card.Body>
 
-          <Card.Title className="text-start fw-bold">Order Confirmation</Card.Title>
+          <Card.Title className="fw-bold">Order Confirmation</Card.Title>
 
             <div className="d-flex justify-content-between text-green fw-bold">
               <span>Discount: </span>
@@ -36,7 +47,7 @@ function OrderConfirmation(props) {
               <span>{props.total}</span> 
             </div>
 
-            <Button variant="success">Confirm Order</Button>
+            <Button onClick={showConfirmationAlert} variant="success">Confirm Order & Pay</Button>
         </Card.Body>
       </Card>
     </Container>

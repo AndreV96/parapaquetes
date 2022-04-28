@@ -32,10 +32,8 @@ function App() {
 
   return (
     <div className="App">
-      <OrdersList orderData = {orderData} setOrderData = {setOrderData} setCurrentOrder = {setCurrentOrder}/>
+      <OrdersList orderData = {orderData} setOrderData = {setOrderData} currentOrder = {currentOrder} setCurrentOrder = {setCurrentOrder}/>
       <RenderOrder />
-      {/* <header className="App-header">
-      </header> */}
     </div>
   );
 }
