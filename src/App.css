@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+/* Custom Classes */
+.center-item {
+  width: 0 auto;
+}
+.text-red {
+  color: #D30000;
+}
+.text-green {
+  color: #198754;
+}
