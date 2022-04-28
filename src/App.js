@@ -14,7 +14,6 @@ function App() {
       const response = await API.getOrders()
       const data = await response.json()
       setOrderData(data)
-      console.log(data)
     }
     fetchOrderData()
   }, [])
