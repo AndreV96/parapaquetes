@@ -2,14 +2,13 @@ import React from "react";
 import {Container} from 'react-bootstrap';
 
 function ShippingInfo(props) {
-  console.log(props)
   const billingAddress = props.orderData.billingAddress
   const shippingAddress = props.orderData.shippingAddress
 
   return(
-    <Container className=" ">
+    <Container className="max-width-content">
 
-      <h2> Order {props.orderData.number} </h2>
+      <h2 className="text-blue fw-bold"> Order {props.orderData.number} </h2>
 
       <div className="d-flex justify-content-around pt-1 border-bottom border-top gap-3 text-start">
         <h4 className="f2-bold">Shipping Address</h4>

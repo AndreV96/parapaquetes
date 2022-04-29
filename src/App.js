@@ -19,19 +19,26 @@ function App() {
     fetchOrderData()
   }, [])
 
+  function filterOrder(orderId) {
+    const orders = orderData.orders.filter((order) => order.number !== orderId)
+    
+    setOrderData({...orderData, orders})
+    setCurrentOrder()
+  }
+
   function RenderOrder() {
     if (currentOrder) {
     const orderIndex = orderData.orders.findIndex(order => order.number === currentOrder)
       return (
         <div>
-          <Checkout orderData = {orderData.orders[orderIndex]} setCurrentOrder = {setCurrentOrder} />
+          <Checkout orderData = {orderData.orders[orderIndex]} setCurrentOrder = {setCurrentOrder} filterOrder = {filterOrder} />
         </div>
       )
     }
   }
 
   return (
-    <div className="App">
+    <div className="App footer-margin">
       <OrdersList orderData = {orderData} setOrderData = {setOrderData} currentOrder = {currentOrder} setCurrentOrder = {setCurrentOrder}/>
       <RenderOrder />
     </div>

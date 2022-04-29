@@ -7,12 +7,12 @@ function OrderConfirmation(props) {
 
   const showConfirmationAlert = () => {
     swal( {
-      title: "Order confirmed and payment done!",
+      title: "Thank you for your payment. Your order is on its way!",
       text: `Total: ${props.total}`,
       icon: "success",
       button: "Ok",
-      timer: "4000"
     })
+    props.filterOrder(props.orderData.number)
   }
   
   return(
@@ -47,7 +47,7 @@ function OrderConfirmation(props) {
               <span>{props.total}</span> 
             </div>
 
-            <Button onClick={showConfirmationAlert} variant="success">Confirm Order & Pay</Button>
+            <Button onClick={showConfirmationAlert} variant="outline-primary" className="add-confirm-button">Order Now & Pay</Button>
         </Card.Body>
       </Card>
     </Container>

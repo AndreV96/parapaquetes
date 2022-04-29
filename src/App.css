@@ -1,3 +1,5 @@
+/* React Classes */
+
 .App {
   text-align: center;
 }
@@ -27,11 +29,24 @@
 }
 
 /* Custom Classes */
+/* Allignment */
 
 .center-item {
   width: 0 auto;
 }
-
+.center-margin {
+  margin: 0 auto !important;
+}
+.w-100 {
+  width: 100%;
+}
+.width {
+  min-width: auto !important;
+  max-width: 100% !important;
+}
+.max-width-content {
+  max-width: 1000px !important;
+}
 /* Colors */
 
 .text-red {
@@ -43,12 +58,18 @@
 .text-blue {
   color: #04a0bd !important;
 }
+.text-dark-blue {
+  color: #041444 !important;
+}
 .border-primary {
-  border-color: #04a0bd !important;
+  border-color: #041444 !important;
+}
+.border-top-secondary {
+  border-top-color: #04a0bd !important;
 }
 
 .header {
-  background-color: #04a0bd;
+  background-color: #041444;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,6 +78,9 @@
   color: white;
 }
 
+.footer-margin {
+  margin-bottom: 100px;
+}
 /* Order List */
 
 .grid-container {
@@ -64,28 +88,52 @@
   grid-template-columns: auto auto auto auto;
   grid-gap: 10px;
   padding: 10px;
-
+  margin: 0 auto;
 }
 
 /* Buttons */
 
 .order-button {
-  border-color: #04a0bd !important;
-  color: #04a0bd !important;
+  border-color: #041444 !important;
+  color: #041444 !important;
+  width: 100%;
+  max-width: 200px;
 }
 .order-button:hover {
-  background-color: #04a0bd !important;
+  background-color: #041444 !important;
   color: white !important;
 }
 .order-selected {
+  background-color: #041444 !important;
+  color: white !important;
+}
+
+.add-confirm-button {
+  border-color: #04a0bd !important;
+  color: #04a0bd !important;
+}
+.add-confirm-button:hover {
   background-color: #04a0bd !important;
   color: white !important;
 }
 
-/* Swal Alert Button */
-/* .swal-button {
-  background-color: red;
+/* Swal Alert */
+.swal-text {
+  color: #D30000;
+  font-weight: bold;
+  font-size: 24px;
 }
-.swal-button:hover {
-  background-color: #198754;
-} */
+.swal-title {
+  color: #04a0bd;
+}
+
+/* Media Queries */
+
+@media (min-width: 750px) {
+  .flex-mq {
+    display: flex;
+  }
+  .margin-left-64 {
+    margin-left: 64px;
+  }
+}
