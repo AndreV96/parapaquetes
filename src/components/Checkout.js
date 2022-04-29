@@ -1,7 +1,7 @@
 import React from "react";
 import AddProduct from './/AddProduct';
 import {useState} from 'react';
-import {ListGroup, Container, ListGroupItem, Card, Button} from 'react-bootstrap';
+import {ListGroup, Container, ListGroupItem, Card, Table} from 'react-bootstrap';
 import ShippingInfo from "./ShippingInfo";
 import OrderConfirmation from "./OrderConfirmation";
 
@@ -15,24 +15,36 @@ function Checkout(props) {
   return(
     <div className="App">
       <ShippingInfo orderData = {props.orderData} />
-      <Container className="p-3">
+      <Container className="p-3 max-width-content">
         
-        <h2> Order {props.orderData.number} </h2>
+        <Table className="table" striped bordered hover>
+          <thead >
+            <tr className="text-blue">
+              <th>Name</th>
+              <th>SKU</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+
+          <tbody className="border-top-secondary">
         {orderItems ? orderItems.map((item) => (
-          <Card key={item.sku}>
-
-            <Card.Title> {item.name} </Card.Title>
-            <ListGroup>
-              <ListGroupItem>{item.sku}</ListGroupItem>
-              <ListGroupItem>{item.quantity}</ListGroupItem>
-              <ListGroupItem>{item.price}</ListGroupItem>
-            </ListGroup>
-
-        </Card>
+            <tr key={item.sku}>
+              <td className="fw-bold">{item.name}</td>
+              <td>{item.sku}</td>
+              <td>{item.quantity}</td>
+              <td>{item.price}</td>
+            </tr>
         )) :""}
+        
+          </tbody>
+        </Table>
       </Container>
-      <AddProduct newProduct = {newProduct} setNewProduct = {setNewProduct} orderData= {props.orderData} subTotal = {subTotal} setSubTotal = {setSubTotal} total ={total} setTotal = {setTotal} />
-      <OrderConfirmation orderData = {props.orderData} subTotal = {subTotal} total ={total} />
+
+      <div className="max-width-content center-margin flex-mq">
+        <AddProduct newProduct = {newProduct} setNewProduct = {setNewProduct} orderData= {props.orderData} subTotal = {subTotal} setSubTotal = {setSubTotal} total ={total} setTotal = {setTotal} />
+        <OrderConfirmation orderData = {props.orderData} subTotal = {subTotal} total ={total} filterOrder = {props.filterOrder}/>
+      </div>
     </div>
   )
 }

@@ -6,9 +6,11 @@ function ShippingInfo(props) {
   const shippingAddress = props.orderData.shippingAddress
 
   return(
-    <Container className=" text-start">
+    <Container className="max-width-content">
 
-      <div className="d-flex justify-content-around pt-1 border-bottom gap-3">
+      <h2 className="text-blue fw-bold"> Order {props.orderData.number} </h2>
+
+      <div className="d-flex justify-content-around pt-1 border-bottom border-top gap-3 text-start">
         <h4 className="f2-bold">Shipping Address</h4>
         <div className="">
           <p className="my-0"> {shippingAddress.company} </p>
@@ -18,7 +20,7 @@ function ShippingInfo(props) {
         </div>  
       </div>
 
-      <div className="d-flex justify-content-around pt-1 border-bottom gap-3">
+      <div className="d-flex justify-content-around pt-1 border-bottom gap-3 text-start">
         <h4 className="f2-bold">Billing Address</h4>
         <div className="">
           <p className="my-0"> {billingAddress.company} </p>
